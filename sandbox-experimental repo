@@ -1,0 +1,7 @@
+echo "# sandbox-experimental" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/acejamal929-a11y/sandbox-experimental.git
+git push -u origin main
