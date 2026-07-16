@@ -1,0 +1,346 @@
+:root {
+    color-scheme: light;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.home-page {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #8bd3ff, #3b82f6);
+}
+
+.home-card {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 3rem 4rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+.home-card h1 {
+    margin-bottom: 1.5rem;
+    color: #123;
+    font-size: 2rem;
+}
+
+.continue-link {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: #22c55e;
+    color: white;
+    text-decoration: none;
+    border-radius: 999px;
+    font-weight: bold;
+}
+
+.game-page {
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #7bd7ff 0%, #4caf50 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.game-scene {
+    position: relative;
+    width: 900px;
+    max-width: 100%;
+    height: 560px;
+    border: 6px solid #2e7d32;
+    border-radius: 24px;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #7ed6ff 0%, #8ee58a 70%, #5aa857 100%);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+}
+
+.sky {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, #7ed6ff 0%, #8ee58a 70%, #5aa857 100%);
+}
+
+.maze-layer,
+.collectible-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+}
+
+.maze-tree {
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(to bottom, #7a4b2a, #4f2d18);
+    border-radius: 18px 18px 8px 8px;
+    box-shadow: inset 0 5px 8px rgba(255, 255, 255, 0.16), 0 8px 16px rgba(0, 0, 0, 0.16);
+}
+
+.maze-tree::before,
+.maze-tree::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, #2f8f3d 0%, #1e6b2d 70%);
+    border-radius: 50%;
+}
+
+.maze-tree::before {
+    top: -12px;
+    width: 38px;
+    height: 38px;
+}
+
+.maze-tree::after {
+    top: -24px;
+    width: 24px;
+    height: 24px;
+}
+
+.coin-bar {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7rem 1rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 999px;
+    z-index: 20;
+    font-weight: bold;
+    color: #234;
+}
+
+.coin-counter {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.coin-icon {
+    font-size: 1.2rem;
+}
+
+.dino {
+    position: absolute;
+    bottom: 42px;
+    left: 100px;
+    width: 50px;
+    height: 34px;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.12s ease;
+}
+
+.dino.roaring {
+    transform: scale(1.03) rotate(-1deg);
+}
+
+.dino-body {
+    position: absolute;
+    left: 10px;
+    bottom: 0;
+    width: 32px;
+    height: 20px;
+    background: linear-gradient(135deg, #4a944d, #2f6d34);
+    border-radius: 28px 28px 16px 16px;
+    border: 2px solid #254d24;
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.dino-head {
+    position: absolute;
+    left: 0;
+    bottom: 12px;
+    width: 26px;
+    height: 16px;
+    background: linear-gradient(135deg, #5baf57, #3d7d3a);
+    border-radius: 20px 20px 12px 12px;
+    border: 2px solid #254d24;
+}
+
+.dino-tail {
+    position: absolute;
+    right: 2px;
+    bottom: 6px;
+    width: 12px;
+    height: 7px;
+    background: linear-gradient(135deg, #4a944d, #2f6d34);
+    border-radius: 10px;
+    transform: rotate(-12deg);
+}
+
+.dino-leg {
+    position: absolute;
+    bottom: -1px;
+    width: 5px;
+    height: 14px;
+    background: linear-gradient(135deg, #2f6d34, #1d4822);
+    border-radius: 4px;
+}
+
+.dino-leg.front {
+    left: 20px;
+}
+
+.dino-leg.back {
+    left: 30px;
+}
+
+.dino-eye {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    top: 5px;
+    left: 10px;
+}
+
+.dino-mouth {
+    position: absolute;
+    width: 9px;
+    height: 3px;
+    border-bottom: 2px solid #123;
+    border-radius: 0 0 10px 10px;
+    top: 9px;
+    left: 6px;
+}
+
+.speech-bubble {
+    position: absolute;
+    top: 100px;
+    left: 180px;
+    padding: 0.7rem 0.9rem;
+    background: white;
+    color: #123;
+    border-radius: 16px;
+    font-weight: bold;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    z-index: 15;
+}
+
+.speech-bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 20px;
+    border-width: 10px 10px 0 10px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+}
+
+.sun {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff8b5, #ffcf40 50%, #f28c00 100%);
+    box-shadow: 0 0 12px rgba(255, 193, 7, 0.5);
+    z-index: 8;
+}
+
+.sun::before,
+.sun::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+.sun::after {
+    inset: 8px;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: grid;
+    place-items: center;
+    z-index: 30;
+}
+
+.overlay-card {
+    background: white;
+    padding: 2rem 2.4rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+}
+
+.overlay-card h2 {
+    margin-top: 0;
+    color: #14532d;
+}
+
+.overlay-card button {
+    margin-top: 0.8rem;
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 999px;
+    background: #22c55e;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.completion-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.speech-bubble.large {
+    position: absolute;
+    top: 140px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.4rem;
+    padding: 1rem 1.2rem;
+}
+
+.continue-bubble {
+    position: absolute;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #facc15;
+    color: #3f2e00;
+    padding: 0.9rem 1.2rem;
+    border-radius: 999px;
+    font-weight: bold;
+    box-shadow: 0 0 0 6px rgba(250, 204, 21, 0.35);
+    animation: pulse 1s infinite;
+    cursor: pointer;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: translateX(-50%) scale(1);
+    }
+    50% {
+        transform: translateX(-50%) scale(1.06);
+    }
+}
+
+.hidden {
+    display: none;
+}

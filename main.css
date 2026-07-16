@@ -1,0 +1,36 @@
+/* 
+decleration block:
+
+selector{
+    property: value;
+    property2: value;
+}
+*/
+
+body{
+    background-color: rgb(136, 88, 181);
+    color: neon rgb(64, 207, 64)
+}
+
+nav{
+    height: 600px;
+    width: 200px;
+    float: left;
+    padding: 5px;
+    line-height: 30px;
+}
+
+footer{
+    text-align: center;
+    margin-right: 200px;
+}
+
+#repo{
+    margin-right: 200px;
+    width: 400px;
+}
+
+h1{
+    text-align: center;
+    color: rgb(110, 231, 144);
+}

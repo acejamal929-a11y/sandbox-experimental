@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dino Adventure</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="game-page">
+    <div class="game-scene" id="scene">
+        <div class="sky"></div>
+        <div class="maze-layer" id="mazeLayer"></div>
+        <div class="collectible-layer" id="collectibleLayer"></div>
+        <div class="coin-bar">
+            <span>Collect suns!</span>
+            <div class="coin-counter">
+                <span class="coin-icon">☀️</span>
+                <span id="coinCount">0</span>
+            </div>
+        </div>
+        <div class="speech-bubble" id="speechBubble">click the dino to play</div>
+
+        <div class="dino" id="dino" tabindex="0">
+            <div class="dino-tail"></div>
+            <div class="dino-body"></div>
+            <div class="dino-head"></div>
+            <div class="dino-leg front"></div>
+            <div class="dino-leg back"></div>
+            <div class="dino-eye"></div>
+            <div class="dino-mouth"></div>
+        </div>
+
+        <div class="overlay hidden" id="levelOverlay">
+            <div class="overlay-card">
+                <h2 id="overlayTitle">Great job!</h2>
+                <p id="overlayText">You finished the level.</p>
+                <button id="overlayButton" type="button">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
