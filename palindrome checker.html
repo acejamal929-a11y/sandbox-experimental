@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1d4ed8);
+            color: #e2e8f0;
+        }
+
+        .container {
+            width: min(90%, 560px);
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            border-radius: 18px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        h1 {
+            margin-top: 0;
+            text-align: center;
+            color: #f8fafc;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 2px solid #94a3b8;
+            border-radius: 10px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            background: #22c55e;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #16a34a;
+        }
+
+        #result {
+            margin-top: 1.25rem;
+            padding: 0.9rem 1rem;
+            border-radius: 10px;
+            min-height: 48px;
+            display: none;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .success {
+            background: #dcfce7;
+            color: #166534;
+            display: block;
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Palindrome Checker</h1>
+
+        <label for="textInput">Enter a word or phrase</label>
+        <input type="text" id="textInput" placeholder="Type here..." />
+
+        <button id="checkButton" type="button">Check</button>
+
+        <div id="result" aria-live="polite"></div>
+    </div>
+
+    <script>
+        const input = document.getElementById('textInput');
+        const button = document.getElementById('checkButton');
+        const result = document.getElementById('result');
+
+        function normalizeText(value) {
+            return value
+                .toLowerCase()
+                .replace(/[^a-z0-9]/g, '');
+        }
+
+        function isPalindrome(value) {
+            const normalized = normalizeText(value);
+            return normalized.length > 0 && normalized === normalized.split('').reverse().join('');
+        }
+
+        function showMessage(message, type) {
+            result.textContent = message;
+            result.className = type;
+        }
+
+        button.addEventListener('click', () => {
+            const text = input.value.trim();
+
+            if (text === '') {
+                showMessage('Please enter a word or phrase.', 'error');
+                return;
+            }
+
+            if (isPalindrome(text)) {
+                showMessage('Yes! This is a palindrome.', 'success');
+            } else {
+                showMessage('No. This is not a palindrome.', 'error');
+            }
+        });
+
+        input.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                button.click();
+            }
+        });
+    </script>
+</body>
+</html>
