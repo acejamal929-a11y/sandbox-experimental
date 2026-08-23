@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sound Demo</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #111827, #1d4ed8);
+            color: #f8fafc;
+        }
+        .panel {
+            width: min(90%, 600px);
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            border-radius: 18px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        button {
+            margin: 0.75rem;
+            padding: 0.9rem 1.4rem;
+            border: none;
+            border-radius: 10px;
+            background: #22c55e;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover { background: #16a34a; }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <h1>Sound Demo</h1>
+        <button type="button" id="collectBtn">Play Collect Sound</button>
+        <button type="button" id="levelBtn">Play Level Complete Sound</button>
+        <button type="button" id="buttonBtn">Play Button Sound</button>
+    </div>
+
+    <script>
+        let audioContext;
+
+        function ensureAudioContext() {
+            if (!audioContext) {
+                const AudioCtor = window.AudioContext || window.webkitAudioContext;
+                if (!AudioCtor) return null;
+                audioContext = new AudioCtor();
+            }
+
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+
+            return audioContext;
+        }
+
+        function playTone({ frequency = 220, duration = 0.2, type = 'sine', volume = 0.04, slideTo = null, delay = 0 }) {
+            const context = ensureAudioContext();
+            if (!context) return;
+
+            const oscillator = context.createOscillator();
+            const gainNode = context.createGain();
+
+            oscillator.type = type;
+            oscillator.frequency.setValueAtTime(frequency, context.currentTime + delay);
+
+            if (slideTo) {
+                oscillator.frequency.exponentialRampToValueAtTime(slideTo, context.currentTime + delay + duration);
+            }
+
+            gainNode.gain.setValueAtTime(volume, context.currentTime + delay);
+            gainNode.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + delay + duration);
+
+            oscillator.connect(gainNode);
+            gainNode.connect(context.destination);
+            oscillator.start(context.currentTime + delay);
+            oscillator.stop(context.currentTime + delay + duration);
+        }
+
+        function playCollectSound() {
+            playTone({ frequency: 640, duration: 0.14, type: 'triangle', volume: 0.06, slideTo: 980 });
+            playTone({ frequency: 880, duration: 0.1, type: 'triangle', volume: 0.04, slideTo: 1180, delay: 0.08 });
+        }
+
+        function playLevelCompleteSound() {
+            playTone({ frequency: 420, duration: 0.18, type: 'sine', volume: 0.05, slideTo: 620 });
+            playTone({ frequency: 620, duration: 0.18, type: 'sine', volume: 0.05, slideTo: 840, delay: 0.12 });
+        }
+
+        function playButtonSound() {
+            playTone({ frequency: 350, duration: 0.08, type: 'square', volume: 0.04, slideTo: 520 });
+        }
+
+        document.getElementById('collectBtn').addEventListener('click', playCollectSound);
+        document.getElementById('levelBtn').addEventListener('click', playLevelCompleteSound);
+        document.getElementById('buttonBtn').addEventListener('click', playButtonSound);
+    </script>
+</body>
+</html>
