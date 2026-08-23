@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Input Validation</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body class="validation-body">
+    <header>
+        <h1>User Input Validation Demo</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <br>
+            <a href="boards.html">Boards</a>
+            <br>
+            <a href="game.html">Dinosaur Game</a>
+            <br>
+            <a href="about.html">About</a>
+            <br>
+            <a href="contact.html">Contact</a>
+            <br>
+            <a href="validation.html">Validation</a>
+        </nav>
+    </header>
+
+    <main class="validation-page">
+        <section class="validation-card">
+            <h2>Register Your Account</h2>
+            <p class="validation-intro">Complete the form below. All fields are checked before submission.</p>
+
+            <form id="validationForm" novalidate>
+                <div class="form-grid">
+                    <div class="field-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Jane Doe">
+                        <p class="input-error" id="fullNameError"></p>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="name@example.com">
+                        <p class="input-error" id="emailError"></p>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890">
+                        <p class="input-error" id="phoneError"></p>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" name="age" min="1" max="120" placeholder="25">
+                        <p class="input-error" id="ageError"></p>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="zipCode">ZIP / Postal Code</label>
+                        <input type="text" id="zipCode" name="zipCode" placeholder="12345 or A1B 2C3">
+                        <p class="input-error" id="zipCodeError"></p>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="jane_doe42">
+                        <p class="input-error" id="usernameError"></p>
+                    </div>
+
+                    <div class="field-group full-width">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Minimum 8 characters">
+                        <p class="input-error" id="passwordError"></p>
+                    </div>
+
+                    <div class="field-group full-width">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter password">
+                        <p class="input-error" id="confirmPasswordError"></p>
+                    </div>
+
+                    <div class="checkbox-group full-width">
+                        <label>
+                            <input type="checkbox" id="terms" name="terms">
+                            I agree to the terms and conditions.
+                        </label>
+                        <p class="input-error" id="termsError"></p>
+                    </div>
+                </div>
+
+                <div id="formStatus" class="form-status" aria-live="polite"></div>
+
+                <button type="submit" class="submit-button">Submit Validation</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="validation.js"></script>
+</body>
+</html>
